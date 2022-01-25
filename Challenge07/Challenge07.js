@@ -25,7 +25,8 @@
 // }
 const objLat = (obj) => {
 
-    return `my name is ${obj.firstName} ${obj.lastName} I am ${obj.age} YO, and I love ${obj.hobby}.`
+
+    return `my name is ${obj.firstName.charAt(0).toUpperCase() + obj.firstName.substring(1)} ${obj.lastName.charAt(0).toUpperCase() + obj.lastName.substring(1)} I am ${obj.age} YO, and I love ${obj.hobby}.`
 
 };
 // objLat(obj)
@@ -304,21 +305,25 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    for (let g = 0; g < date.grades.length; g++) {
-     {
-        for (let c = 0; c <date.grades[g].numberOFClasses; c++) {
-            for (let index = 0; index < date.grades[g].classes[c].classScores.length; index++) {
-                let sum = 0;
+    let sum = 0;
+    for (let g = 0; g < data.grades.length; g++) {
+     
+        for (let c = 0; c <data.grades[g].numberOFClasses; c++) {
+            for (let index = 0; index < data.grades[g].classes[c].classScores.length; index++) {
                 
-                sum += date.grades[g].classes[c].classScores[index]
+                
+                sum += data.grades[g].classes[c].classScores[index]
                 
                 
             }
-            avg = (sum / date.grades[g].classes[c].classScores.length)
+           let avg = (sum / data.grades[g].classes[c].classScores.length)
+           
+               
         }
+        
     }};
-   
+     
     // wrie your code here
-};
+
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
