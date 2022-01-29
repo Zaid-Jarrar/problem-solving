@@ -35,7 +35,7 @@ const arrInc = (arr) => {
 //  [5.4, 5.5 ,6.7, 6.8] ==> [5, 6, 7, 7]
 // 
 // ---------------
-
+let datas = [5.4, 5.5 ,6.7, 6.8]
 const roundDecimals = (arr) => {
     let result = [] 
     let g = 0
@@ -45,10 +45,10 @@ const roundDecimals = (arr) => {
      });
 
 
-    return arr
+    return result
 
 }
-
+roundDecimals(datas)
 // 3) ---------------------
 // 
 //  An owner of a factory want to give bounce 100$ for the employee of production department who worked *More than* 8 hours
@@ -111,14 +111,51 @@ const roundDecimals = (arr) => {
 //     }
 // ]
 //
-
+let data = [
+       {
+           name: "Robert",
+           section: "Transport",
+           workHours: 8,
+           salary: "3000$"
+       },
+       {
+           name: "Richard",
+           section: "HR",
+           workHours: 6,
+           salary: "4000$"
+       },
+       {
+           name: "Christopher",
+           section: "Production",
+           workHours: 10,
+           salary: "4500$"
+   },
+       {
+       name: "Andrew",
+           section: "HouseKeeping",
+           workHours: 9,
+           salary: "3200$"
+       }
+    ]
 // ------------------------
 const employeesBonus = (arr) => {
+    
+   
     arr.forEach(element => {
+        if(element.workHours > 8){
+            
+            element.salary = `${parseInt(element.salary) + 100}$`
+        }
+        else{
+            element.salary = `${parseInt(element.salary) + 50}$`
+        }
+        
         
     });
+    
+    return arr;
 }
-
+employeesBonus(data)
 // 4) ---------------------
 // 
 // Harry wants to buy a new mouse and keyboard for his new setup
@@ -134,6 +171,7 @@ const employeesBonus = (arr) => {
 // ==> 200
 // ------------------------
 const mostExpensive = (budget, mouseArray, keyBoardArray) => {
+  
     // write your code here
 }
 
