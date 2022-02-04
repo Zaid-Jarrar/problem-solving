@@ -92,33 +92,35 @@ const objLat = (obj) => {
 
 // ------------------------
 const cvFormatter = (arr) => {
-    let candidates = []
-    function Object(fullName, tech) {
-        this.fullName = fullName;
-        this.tech = tech;
-    }
 
-    for (let index = 0; index < arr.length; index++) {
-        if (arr[index].yearsOfExperience > 1) {
-            let name = ''
-            if(arr[index].firstName !== null ){
-                name = arr[index].firstName
-                if(arr[index].lastName !== null){
-                    name += ' ' + arr[index].lastName
-                }
-            }  
-            else if (arr[index].lastName!== null){
-                name = arr[index].lastName
-            }
-          
-            candidates.push(new Object(name, arr[index].tech));
+    let array2 = [];
+    let g = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].yearsOfExperience > 1) {
+            array2[g] = arr[i];
+            g++;
         }
-
-
-
     }
-    return candidates;
-    // write your code here
+    let finalArray = function (array2) {
+        return array2.map(function (modify) {
+            let result = {};
+            if (modify.firstName == null) {
+                result['fullName'] = modify.lastName;
+                result['tech'] = modify.tech;
+            } else if (modify.lastName == null) {
+                result['fullName'] = modify.firstName;
+                result['tech'] = modify.tech;
+            } else {
+                result['fullName'] = `${modify.firstName} ${modify.lastName}`;
+                result['tech'] = modify.tech;
+            }
+
+            return result;
+        });
+    };
+    ;
+
+    return finalArray(array2)
 };
 
 // 3) ---------------------
@@ -152,16 +154,27 @@ const applicationsStatics = (arr) => {
         rejectedApplicants: 0,
     }
     for (let index = 0; index < arr.length; index++) {
-        if ((arr[index].firstName === '' || arr[index].firstName === null)
-            || (arr[index].lastName === '' || arr[index].lastName === null)) {
+        if  ((arr[index].firstName == '' || arr[index].lastName == '')
+        && (arr[index].lastName == null || arr[index].firstName == null)){
+            result.rejectedApplicants++
+            continue}
+
+  
+            if (arr[index].yearsOfExperience < 1) {
                 result.rejectedApplicants++
                 continue
+            }
         }
-        if (arr[index].yearsOfExperience < 1) {
-            result.rejectedApplicants++
-            continue
-        }
-        switch (arr[index].tech) {
+
+    
+    
+    // else if (arr[index].yearsOfExperience < 1) {
+    //     result.rejectedApplicants++
+    //     // continue
+    // }
+
+    for (let i = 0; i < arr.length; i++) {
+        switch (arr[i].tech) {
             case "JS":
                 result.javaScript_Devs++
                 break;
@@ -179,6 +192,7 @@ const applicationsStatics = (arr) => {
 
         }
     }
+
     result.totalApplicants = arr.length
     return result;  // write your code here
 };
@@ -305,25 +319,39 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
+
     let sum = 0;
-    for (let g = 0; g < data.grades.length; g++) {
-     
-        for (let c = 0; c <data.grades[g].numberOFClasses; c++) {
-            for (let index = 0; index < data.grades[g].classes[c].classScores.length; index++) {
-                
-                
-                sum += data.grades[g].classes[c].classScores[index]
-                
-                
-            }
-           let avg = (sum / data.grades[g].classes[c].classScores.length)
-           
-               
+
+    for (let i = 0; i < data.grades.length; i++) {
+        for (let x = 0; x < data.grades[i].numberOFClasses; x++) {
+            sum = data.grades[i].classes[x].classScores.reduce(function (a, b) {
+                return a + b;
+            }, 0);
+
+            data.grades[i].classes[x].avg = Math.floor(sum / data.grades[i].classes[x].classScores.length);
         }
-        
-    }};
-     
-    // wrie your code here
+        sum = 0;
+    }
+
+    return data;
+
+
+
+
+
+    // let sum = 0;
+    // let avg
+    // for (let g = 0; g < data.grades.length; g++) {
+    //     for (let c = 0; c <data.grades[g].numberOFClasses; c++) {
+    //         for (let index = 0; index < data.grades[g].classes[c].classScores.length; index++) {               
+    //             sum += data.grades[g].classes[c].classScores[index]               
+    //         }
+    //         avg = (sum / data.grades[g].classes[c].classScores.length)               
+    //     }
+    //     return avg
+};
+
+// wrie your code here
 
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
