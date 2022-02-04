@@ -127,7 +127,7 @@ const getInfo = (arr) => {
         let entries = [];
         for (let i = 0; i < arr.length; i++) {
           entries = Object.entries(arr[i]);
-          for (let index = 0; x < entries.length; x++) {
+          for (let index = 0; index < entries.length; index++) {
             if (index == 0) {
               coursesName.push(entries[0][1]);
             } else if (index == 2) {
