@@ -121,6 +121,7 @@ const courses = [
 ];
 
 const getInfo = (arr) => {
+
         let coursesName = [];
         let studentsName = [];
         let results = [];
@@ -164,6 +165,7 @@ getInfo(courses)
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
+
       let studentsInfo = [];
       for (const allStudents of arr) {
         let newObj = {};
@@ -177,6 +179,7 @@ const getStudents = (arr) => {
       }
       return studentsInfo;
 };
+
 module.exports = {
     customerAndAge,
     getEntries,
