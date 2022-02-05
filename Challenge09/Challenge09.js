@@ -16,6 +16,7 @@
 // ------------------------
 
 const arrInc = (arr) => {
+
   let  result = []
     let c = 0
     arr.forEach(element => {
@@ -35,8 +36,10 @@ const arrInc = (arr) => {
 //  [5.4, 5.5 ,6.7, 6.8] ==> [5, 6, 7, 7]
 // 
 // ---------------
-let datas = [5.4, 5.5 ,6.7, 6.8]
+
+
 const roundDecimals = (arr) => {
+
     let result = [] 
     let g = 0
      arr.forEach(element => {
