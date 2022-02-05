@@ -154,13 +154,13 @@ const applicationsStatics = (arr) => {
         rejectedApplicants: 0,
     }
     for (let index = 0; index < arr.length; index++) {
-        if  ((arr[index].firstName == '' || arr[index].lastName == '')
-        && (arr[index].lastName == null || arr[index].firstName == null)){
+        if  ((arr[index].firstName == '' || arr[index].firstName == null)
+        && (arr[index].lastName == '' || arr[index].lastName == null)){
             result.rejectedApplicants++
             continue}
 
   
-            if (arr[index].yearsOfExperience < 1) {
+            if (arr[index].yearsOfExperience <= 1) {
                 result.rejectedApplicants++
                 continue
             }

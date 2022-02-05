@@ -121,24 +121,29 @@ const courses = [
 ];
 
 const getInfo = (arr) => {
-    let coursesName = [];
-    let studentsName = [];
-    let list = [];
 
-    for (const value of Object.values(arr)) {
+        let coursesName = [];
+        let studentsName = [];
+        let results = [];
+        let entries = [];
+        for (let i = 0; i < arr.length; i++) {
+          entries = Object.entries(arr[i]);
+          for (let index = 0; index < entries.length; index++) {
+            if (index == 0) {
+              coursesName.push(entries[0][1]);
+            } else if (index == 2) {
+             results.push(entries[2][1]);
+            }
+          }
+        }
+        for (let y = 0; y < results.length; y++) {
+          for (let n = 0; n < results[y].length; n++) {
+            studentsName.push(results[y][n]);
+          }
+        }      
+        return { coursesName, studentsName };
+      };
 
-        coursesName.push(`${value.course}`);
-        
-        studentsName.push(`${value.Students}`)
-        
-        
-       
-
-    }
-
-
-    return { coursesName, studentsName };
-};
 
 getInfo(courses)
 //  ------------------------------------------------------------------------------------------------------
@@ -160,14 +165,19 @@ getInfo(courses)
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-    // if (arr[index] === )
 
-    // for( const [key, value] of Object.enteries(arr)){
-    //     // array.push(`Student: ${arr[key]}`)
-    //     if (arr[index] === ${value.})
-    // }
-    // write your code here
-
+      let studentsInfo = [];
+      for (const allStudents of arr) {
+        let newObj = {};
+        for (const courseObj of courses) {
+          if (courseObj.Students.includes(allStudents)) {
+            newObj['Student'] = allStudents;
+            newObj['course'] = courseObj.course;
+          }
+        }
+        studentsInfo.push(newObj);
+      }
+      return studentsInfo;
 };
 
 module.exports = {
